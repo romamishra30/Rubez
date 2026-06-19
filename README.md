@@ -186,5 +186,3 @@ Open the local development URL displayed in the terminal.
 4. The generated solution is returned to the frontend.
 5. View the solution sequence and 3D cube visualization.
 
-```
-
