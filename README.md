@@ -144,13 +144,47 @@ This architecture combines the reliability of a deterministic C++ solving algori
 
 ## 🛠️ Building & Running
 
+### 1. Clone the Repository
+
 ```bash
-# Compile
-make
-
-# Run with single scramble
-echo "B2 F2 L' R2 F2 L R' B2 U2 F' D' U F U2 L2 D F2 U' R B2" | ./Rubik
-
-# Run with multiple scrambles
-cat scrambles.txt | ./Rubik
+git clone https://github.com/romamishra30/RubiksCubeSolver1.git
+cd RubiksCubeSolver1
 ```
+
+### 2. Build the C++ Solver
+
+```bash
+cd solver
+make
+```
+
+### 3. Start the Backend
+
+```bash
+cd ../backend
+npm install
+node server.js
+```
+
+The backend exposes API endpoints that execute the C++ solver and return solution sequences.
+
+### 4. Start the Frontend
+
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+Open the local development URL displayed in the terminal.
+
+### 5. Solve a Cube
+
+1. Enter a scramble sequence.
+2. Click **Solve**.
+3. The backend invokes the C++ solver.
+4. The generated solution is returned to the frontend.
+5. View the solution sequence and 3D cube visualization.
+
+```
+
