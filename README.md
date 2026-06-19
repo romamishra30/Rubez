@@ -83,6 +83,64 @@ Follows standard Rubik's cube notation:
 - **Reduced Case Analysis**: Beginner's method breaks complex scenarios into manageable chunks
 - **Systematic Approach**: Each step is independent, making debugging easier
 - **Human-Readable**: Uses intuitive solving patterns familiar to cubers
+## 🌐 Full-Stack Visualization Interface
+
+In addition to the C++ solving engine, this project includes a modern full-stack web application for interactive cube solving and visualization.
+
+### Frontend
+
+Built using:
+
+* **React + Vite**
+* **Three.js / React Three Fiber**
+* **Tailwind CSS**
+
+Features:
+
+* Interactive 3D Rubik's Cube visualization
+* Scramble input through a user-friendly interface
+* Step-by-step solution playback
+* Move history tracking and navigation
+* Real-time solver integration
+* Responsive dashboard-style UI
+
+### Backend
+
+Built using:
+
+* **Node.js**
+* **Express.js**
+
+Responsibilities:
+
+* Receives scramble sequences from the frontend
+* Executes the C++ solver engine
+* Returns generated solution sequences through API endpoints
+* Bridges communication between the visualization layer and solving engine
+
+### System Architecture
+
+```text
+User Input
+    │
+    ▼
+React Frontend
+    │
+    ▼
+Node.js Backend
+    │
+    ▼
+C++ Solver Engine
+    │
+    ▼
+Solution Sequence
+    │
+    ▼
+3D Visualization & Playback
+```
+
+This architecture combines the reliability of a deterministic C++ solving algorithm with an interactive modern web interface, allowing users to both generate solutions and visualize the solving process in real time.
+
 
 ## 🛠️ Building & Running
 
