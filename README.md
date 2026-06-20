@@ -1,4 +1,4 @@
-# Rubik's Cube Solver
+# Rubez - Rubik's Cube Solver
 
 A C++ Rubik’s Cube solver that models cube state using matrix-based representation and applies a deterministic layer-by-layer solving algorithm. Designed with modular rotation logic and state validation to ensure correctness across transformations.
 
