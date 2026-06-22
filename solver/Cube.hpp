@@ -3,23 +3,20 @@
 
 #include <iostream>
 using namespace std;
+
 class Cube {
+public:
+  int cubies[9][6];
 
-  public: int cubies[9][6];
+  Cube(bool);
 
-  /* Set up Cube.
-  If scramble set, call scramble.
-  Else, set up a solved cube */
-  public: Cube(bool);
+private:
+  void scramble();
 
-  /* By default scramble sets
-  cubies to a random state,
-  using combination of move functions */
-  private: void scramble();
-
-  public:
+public:
   string printSequence(string);
   void moves(string);
+  void applyMoves(string);
   void output();
   void R(int);
   void L(int);
@@ -28,4 +25,5 @@ class Cube {
   void F(int);
   void B(int);
 };
+
 #endif

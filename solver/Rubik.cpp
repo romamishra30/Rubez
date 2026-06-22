@@ -9,49 +9,62 @@ using namespace std;
 
 string format(string);
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
+  string argString;
 
-  Cube myCube(false);
-    int scrambleNum = 0;
-    string argString;
-    while (getline(cin, argString)) {
-    ++scrambleNum;
+  while (getline(cin, argString))
+  {
+    Cube myCube(false);
+
     string scramble = format(argString);
-    cout << "Scramble #" << scrambleNum << ": ";
-    myCube.moves(scramble);
+
+    myCube.applyMoves(scramble);
+
+    cout << "[STAGE] Cross" << endl;
     Cross::solveCross(myCube);
-    cout << "Cross solved" << endl;
+
+    cout << "[STAGE] First Layer Corners" << endl;
     Corners::solveCorners(myCube);
-    cout << "Corners solved" << endl;
+
+    cout << "[STAGE] Middle Layer Edges" << endl;
     Edges::solveEdges(myCube);
-    cout << "Edges solved" << endl;;
+
+    cout << "[STAGE] Orient Last Layer" << endl;
     OLL::solveOLL(myCube);
-    cout << "OLL solved" << endl;
+
+    cout << "[STAGE] Permute Last Layer" << endl;
     PLL::solvePLL(myCube);
-    cout << "PLL solved" << endl;
+
+    cout << endl;
   }
+
   return 0;
 }
 
-string format(string s) {
+string format(string s)
+{
   string formatted;
 
-  for (int i=0; i<s.length(); ++i) {
-    if (s[i] == '\'') {
-      formatted += s[i-1];
-      formatted += s[i-1];
+  for (int i = 0; i < s.length(); ++i)
+  {
+    if (s[i] == '\'')
+    {
+      formatted += s[i - 1];
+      formatted += s[i - 1];
     }
-    else if (s[i] == '2') {
-      formatted += s[i-1];
+    else if (s[i] == '2')
+    {
+      formatted += s[i - 1];
     }
-    else if (s[i] == ' ') {
-
+    else if (s[i] == ' ')
+    {
     }
-    else {
+    else
+    {
       formatted += s[i];
     }
   }
 
   return formatted;
-
 }

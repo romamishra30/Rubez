@@ -1,194 +1,263 @@
 #include "Cube.hpp"
 #include <iostream>
 
-Cube::Cube(bool scrambled) {
+Cube::Cube(bool scrambled)
+{
 
-  for (int sticker=0; sticker<9; ++sticker) {
-    for (int side=0; side<6; ++side) {
-      if (side==0) {
-        Cube::cubies[sticker][side] = 0; //White
+  for (int sticker = 0; sticker < 9; ++sticker)
+  {
+    for (int side = 0; side < 6; ++side)
+    {
+      if (side == 0)
+      {
+        Cube::cubies[sticker][side] = 0; // White
       }
-      else if(side==1) {
-        Cube::cubies[sticker][side] = 1; //Yellow
+      else if (side == 1)
+      {
+        Cube::cubies[sticker][side] = 1; // Yellow
       }
-      else if(side==2) {
-        Cube::cubies[sticker][side] = 2; //Red
+      else if (side == 2)
+      {
+        Cube::cubies[sticker][side] = 2; // Red
       }
-      else if(side==3) {
-        Cube::cubies[sticker][side] = 3; //Green
+      else if (side == 3)
+      {
+        Cube::cubies[sticker][side] = 3; // Green
       }
-      else if(side==4) {
-        Cube::cubies[sticker][side] = 4; //Orange
+      else if (side == 4)
+      {
+        Cube::cubies[sticker][side] = 4; // Orange
       }
-      else if(side==5) {
-        Cube::cubies[sticker][side] = 5; //Blue
+      else if (side == 5)
+      {
+        Cube::cubies[sticker][side] = 5; // Blue
       }
     }
   }
 
-  if (scrambled) {
+  if (scrambled)
+  {
     Cube::scramble();
   }
 }
-void Cube::moves(string sequence) {
+void Cube::moves(string sequence)
+{
   string outputSequence = "";
   int sequenceLength = sequence.length();
-  for (int i=0; i<sequenceLength; ++i) {
-    switch (sequence[i]) {
-      case 'U':
-        U(1);
-        break;
-      case 'D':
-        D(1);
-        break;
-      case 'R':
-        R(1);
-        break;
-      case 'L':
-        L(1);
-        break;
-      case 'F':
-        F(1);
-        break;
-      case 'B':
-        B(1);
-        break;
+  for (int i = 0; i < sequenceLength; ++i)
+  {
+    switch (sequence[i])
+    {
+    case 'U':
+      U(1);
+      break;
+    case 'D':
+      D(1);
+      break;
+    case 'R':
+      R(1);
+      break;
+    case 'L':
+      L(1);
+      break;
+    case 'F':
+      F(1);
+      break;
+    case 'B':
+      B(1);
+      break;
     }
   }
 
   cout << printSequence(sequence) << endl;
-  //output();
+  // output();
 }
 
-string Cube::printSequence(string sequence) {
+void Cube::applyMoves(string sequence)
+{
+  int sequenceLength = sequence.length();
+
+  for (int i = 0; i < sequenceLength; ++i)
+  {
+    switch (sequence[i])
+    {
+    case 'U':
+      U(1);
+      break;
+    case 'D':
+      D(1);
+      break;
+    case 'R':
+      R(1);
+      break;
+    case 'L':
+      L(1);
+      break;
+    case 'F':
+      F(1);
+      break;
+    case 'B':
+      B(1);
+      break;
+    }
+  }
+}
+
+string Cube::printSequence(string sequence)
+{
   string newSequence;
-  for (int i=0; i < sequence.length(); ++i) {
-    if (sequence.length() > (i+2)) {
-      if ((sequence[i] == sequence[i+1]) && (sequence[i] == sequence[i+2])){ // RRR -> R'
+  for (int i = 0; i < sequence.length(); ++i)
+  {
+    if (sequence.length() > (i + 2))
+    {
+      if ((sequence[i] == sequence[i + 1]) && (sequence[i] == sequence[i + 2]))
+      { // RRR -> R'
         newSequence += sequence[i];
         newSequence += "\'";
-        i+=2;
+        i += 2;
       }
-      else if (sequence[i] == sequence[i+1]) {
+      else if (sequence[i] == sequence[i + 1])
+      {
         newSequence += sequence[i];
         newSequence += "2";
         i += 1;
       }
-      else {
+      else
+      {
         newSequence += sequence[i];
       }
     }
-    else if (sequence.length() > (i+1)) {
-      if (sequence[i] == sequence[i+1]) {
+    else if (sequence.length() > (i + 1))
+    {
+      if (sequence[i] == sequence[i + 1])
+      {
         newSequence += sequence[i];
         newSequence += "2";
         i += 1;
       }
-      else {
+      else
+      {
         newSequence += sequence[i];
       }
     }
-    else {
+    else
+    {
       newSequence += sequence[i];
     }
 
     newSequence += " ";
-
   }
 
   return newSequence;
 }
 
-void Cube::output() {
+void Cube::output()
+{
   cout << "White:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][0];
       ++i;
     }
     cout << endl;
   }
   cout << "Yellow:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][1];
       ++i;
     }
     cout << endl;
   }
   cout << "Red:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][2];
       ++i;
     }
     cout << endl;
   }
   cout << "Green:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][3];
       ++i;
     }
     cout << endl;
   }
   cout << "Orange:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][4];
       ++i;
     }
     cout << endl;
   }
   cout << "Blue:" << endl;
-  for (int i=0; i<9; i+=0) {
-    for (int j=0; j<3; ++j) {
+  for (int i = 0; i < 9; i += 0)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       cout << cubies[i][5];
       ++i;
     }
     cout << endl;
   }
-
 }
 
-void Cube::scramble() {
-  //generate random string and call moves()
-
+void Cube::scramble()
+{
+  // generate random string and call moves()
 }
 
-void Cube::R(int n) {
+void Cube::R(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
-    for (int x=0; x<n; ++x) {
+  if (n >= 0)
+  {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //Orange->White
+      // Orange->White
       newCubies[2][0] = Cube::cubies[6][4];
       newCubies[5][0] = Cube::cubies[3][4];
       newCubies[8][0] = Cube::cubies[0][4];
 
-      //White->Red
+      // White->Red
       newCubies[2][2] = Cube::cubies[2][0];
       newCubies[5][2] = Cube::cubies[5][0];
       newCubies[8][2] = Cube::cubies[8][0];
 
-      //Red->Yellow
+      // Red->Yellow
       newCubies[2][1] = Cube::cubies[2][2];
       newCubies[5][1] = Cube::cubies[5][2];
       newCubies[8][1] = Cube::cubies[8][2];
 
-      //Yellow->Orange
+      // Yellow->Orange
       newCubies[6][4] = Cube::cubies[2][1];
       newCubies[3][4] = Cube::cubies[5][1];
       newCubies[0][4] = Cube::cubies[8][1];
 
-      //Rotate Green
+      // Rotate Green
       newCubies[0][3] = Cube::cubies[6][3];
       newCubies[1][3] = Cube::cubies[3][3];
       newCubies[2][3] = Cube::cubies[0][3];
@@ -198,53 +267,56 @@ void Cube::R(int n) {
       newCubies[7][3] = Cube::cubies[5][3];
       newCubies[8][3] = Cube::cubies[2][3];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
-
-
 }
 
-void Cube::L(int n) {
+void Cube::L(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
+  if (n >= 0)
+  {
 
-    for (int x=0; x<n; ++x) {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //White->Orange
+      // White->Orange
       newCubies[2][4] = Cube::cubies[6][0];
       newCubies[5][4] = Cube::cubies[3][0];
       newCubies[8][4] = Cube::cubies[0][0];
 
-      //Orange->Yellow
+      // Orange->Yellow
       newCubies[6][1] = Cube::cubies[2][4];
       newCubies[3][1] = Cube::cubies[5][4];
       newCubies[0][1] = Cube::cubies[8][4];
 
-      //Yellow->Red
+      // Yellow->Red
       newCubies[0][2] = Cube::cubies[0][1];
       newCubies[3][2] = Cube::cubies[3][1];
       newCubies[6][2] = Cube::cubies[6][1];
 
-      //Red->White
+      // Red->White
       newCubies[0][0] = Cube::cubies[0][2];
       newCubies[3][0] = Cube::cubies[3][2];
       newCubies[6][0] = Cube::cubies[6][2];
 
-      //Rotate Blue
+      // Rotate Blue
       newCubies[0][5] = Cube::cubies[6][5];
       newCubies[1][5] = Cube::cubies[3][5];
       newCubies[2][5] = Cube::cubies[0][5];
@@ -254,52 +326,56 @@ void Cube::L(int n) {
       newCubies[7][5] = Cube::cubies[5][5];
       newCubies[8][5] = Cube::cubies[2][5];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
-
 }
 
-void Cube::U(int n) {
+void Cube::U(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
+  if (n >= 0)
+  {
 
-    for (int x=0; x<n; ++x) {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //Orange->Green
+      // Orange->Green
       newCubies[0][3] = Cube::cubies[0][4];
       newCubies[1][3] = Cube::cubies[1][4];
       newCubies[2][3] = Cube::cubies[2][4];
 
-      //Green->Red
+      // Green->Red
       newCubies[0][2] = Cube::cubies[0][3];
       newCubies[1][2] = Cube::cubies[1][3];
       newCubies[2][2] = Cube::cubies[2][3];
 
-      //Red->Blue
+      // Red->Blue
       newCubies[0][5] = Cube::cubies[0][2];
       newCubies[1][5] = Cube::cubies[1][2];
       newCubies[2][5] = Cube::cubies[2][2];
 
-      //Blue->Orange
+      // Blue->Orange
       newCubies[0][4] = Cube::cubies[0][5];
       newCubies[1][4] = Cube::cubies[1][5];
       newCubies[2][4] = Cube::cubies[2][5];
 
-      //Rotate Yellow
+      // Rotate Yellow
       newCubies[0][1] = Cube::cubies[6][1];
       newCubies[1][1] = Cube::cubies[3][1];
       newCubies[2][1] = Cube::cubies[0][1];
@@ -309,51 +385,56 @@ void Cube::U(int n) {
       newCubies[7][1] = Cube::cubies[5][1];
       newCubies[8][1] = Cube::cubies[2][1];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
 }
 
-void Cube::D(int n) {
+void Cube::D(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
+  if (n >= 0)
+  {
 
-    for (int x=0; x<n; ++x) {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //Orange->Blue
+      // Orange->Blue
       newCubies[6][5] = Cube::cubies[6][4];
       newCubies[7][5] = Cube::cubies[7][4];
       newCubies[8][5] = Cube::cubies[8][4];
 
-      //Blue->Red
+      // Blue->Red
       newCubies[6][2] = Cube::cubies[6][5];
       newCubies[7][2] = Cube::cubies[7][5];
       newCubies[8][2] = Cube::cubies[8][5];
 
-      //Red->Green
+      // Red->Green
       newCubies[6][3] = Cube::cubies[6][2];
       newCubies[7][3] = Cube::cubies[7][2];
       newCubies[8][3] = Cube::cubies[8][2];
 
-      //Green->Orange
+      // Green->Orange
       newCubies[6][4] = Cube::cubies[6][3];
       newCubies[7][4] = Cube::cubies[7][3];
       newCubies[8][4] = Cube::cubies[8][3];
 
-      //Rotate White
+      // Rotate White
       newCubies[0][0] = Cube::cubies[6][0];
       newCubies[1][0] = Cube::cubies[3][0];
       newCubies[2][0] = Cube::cubies[0][0];
@@ -363,52 +444,56 @@ void Cube::D(int n) {
       newCubies[7][0] = Cube::cubies[5][0];
       newCubies[8][0] = Cube::cubies[2][0];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
-
 }
 
-void Cube::F(int n) {
+void Cube::F(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
+  if (n >= 0)
+  {
 
-    for (int x=0; x<n; ++x) {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //Blue->Yellow
+      // Blue->Yellow
       newCubies[8][1] = Cube::cubies[2][5];
       newCubies[7][1] = Cube::cubies[5][5];
       newCubies[6][1] = Cube::cubies[8][5];
 
-      //Yellow->Green
+      // Yellow->Green
       newCubies[0][3] = Cube::cubies[6][1];
       newCubies[3][3] = Cube::cubies[7][1];
       newCubies[6][3] = Cube::cubies[8][1];
 
-      //Green->White
+      // Green->White
       newCubies[2][0] = Cube::cubies[0][3];
       newCubies[1][0] = Cube::cubies[3][3];
       newCubies[0][0] = Cube::cubies[6][3];
 
-      //White->Blue
+      // White->Blue
       newCubies[2][5] = Cube::cubies[0][0];
       newCubies[5][5] = Cube::cubies[1][0];
       newCubies[8][5] = Cube::cubies[2][0];
 
-      //Rotate Red
+      // Rotate Red
       newCubies[0][2] = Cube::cubies[6][2];
       newCubies[1][2] = Cube::cubies[3][2];
       newCubies[2][2] = Cube::cubies[0][2];
@@ -418,52 +503,56 @@ void Cube::F(int n) {
       newCubies[7][2] = Cube::cubies[5][2];
       newCubies[8][2] = Cube::cubies[2][2];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
-
 }
 
-void Cube::B(int n) {
+void Cube::B(int n)
+{
 
   int newCubies[9][6];
-  for (int i=0;i<9;++i) {
-    for (int j=0;j<6;++j) {
+  for (int i = 0; i < 9; ++i)
+  {
+    for (int j = 0; j < 6; ++j)
+    {
       newCubies[i][j] = Cube::cubies[i][j];
     }
   }
 
-  if (n>=0) {
+  if (n >= 0)
+  {
 
-    for (int x=0; x<n; ++x) {
+    for (int x = 0; x < n; ++x)
+    {
 
-      //Yellow->Blue
+      // Yellow->Blue
       newCubies[6][5] = Cube::cubies[0][1];
       newCubies[3][5] = Cube::cubies[1][1];
       newCubies[0][5] = Cube::cubies[2][1];
 
-      //Blue->White
+      // Blue->White
       newCubies[6][0] = Cube::cubies[0][5];
       newCubies[7][0] = Cube::cubies[3][5];
       newCubies[8][0] = Cube::cubies[6][5];
 
-      //White->Green
+      // White->Green
       newCubies[8][3] = Cube::cubies[6][0];
       newCubies[5][3] = Cube::cubies[7][0];
       newCubies[2][3] = Cube::cubies[8][0];
 
-      //Green->Yellow
+      // Green->Yellow
       newCubies[0][1] = Cube::cubies[2][3];
       newCubies[1][1] = Cube::cubies[5][3];
       newCubies[2][1] = Cube::cubies[8][3];
 
-      //Rotate Orange
+      // Rotate Orange
       newCubies[0][4] = Cube::cubies[6][4];
       newCubies[1][4] = Cube::cubies[3][4];
       newCubies[2][4] = Cube::cubies[0][4];
@@ -473,14 +562,13 @@ void Cube::B(int n) {
       newCubies[7][4] = Cube::cubies[5][4];
       newCubies[8][4] = Cube::cubies[2][4];
 
-      for (int i=0;i<9;++i) {
-        for (int j=0;j<6;++j) {
+      for (int i = 0; i < 9; ++i)
+      {
+        for (int j = 0; j < 6; ++j)
+        {
           Cube::cubies[i][j] = newCubies[i][j];
         }
       }
-
     }
   }
-
-
 }

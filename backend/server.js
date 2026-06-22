@@ -25,6 +25,7 @@ app.post("/solve", async (req, res) => {
       success: true,
       scramble,
       solution: result.solution,
+      stages: result.stages,
       moveCount: result.solution.length,
     });
   } catch (error) {
