@@ -7,6 +7,8 @@ Users can generate scrambles, solve cubes using the Beginner's Method, visualize
 ---
 
 🚀 Live Demo: https://rubez.vercel.app
+Frontend deployed on Vercel.
+Backend currently runs locally during development.
 
 ## ✨ Features
 
