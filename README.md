@@ -6,6 +6,8 @@ Users can generate scrambles, solve cubes using the Beginner's Method, visualize
 
 ---
 
+🚀 Live Demo: https://rubez.vercel.app
+
 ## ✨ Features
 
 ### Solver Engine
