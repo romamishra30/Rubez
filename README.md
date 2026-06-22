@@ -43,15 +43,19 @@ Users can generate scrambles, solve cubes using the Beginner's Method, visualize
 
 ### Dashboard
 
-> Add dashboard screenshot here
+> <img width="1907" height="910" alt="image" src="https://github.com/user-attachments/assets/e4644e47-d135-4e78-b6ac-c62297aa94c5" />
+
+
 
 ### 3D Visualization
 
-> Add cube visualization screenshot here
+> <img width="1911" height="907" alt="image" src="https://github.com/user-attachments/assets/ace64cf6-a2a8-4baf-8e9b-914e278c8af5" />
+
 
 ### Solution Playback
 
-> Add solution playback screenshot here
+> <img width="1903" height="913" alt="image" src="https://github.com/user-attachments/assets/6e4b8a46-8396-49f2-9cd5-44430acce233" />
+
 
 ---
 
